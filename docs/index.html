@@ -76,13 +76,56 @@
         }
       }
 
+      .title-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+        gap: 16px;
+      }
+
       .title {
         font-size: 2.1rem;
         font-weight: 700;
         letter-spacing: -0.01em;
-        margin-bottom: 12px;
         color: var(--primary-dark);
         text-shadow: 0 1px 2px #fff8, 0 1.5px 4px #c9e0ff55;
+        margin: 0;
+        line-height: 1.2;
+      }
+
+      .github-button {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--primary-dark);
+        text-decoration: none;
+        background: rgba(79, 140, 255, 0.08);
+        border: 1.5px solid rgba(79, 140, 255, 0.2);
+        border-radius: 6px;
+        transition: all 0.2s ease;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 8px rgba(79, 140, 255, 0.1);
+        letter-spacing: 0.01em;
+        white-space: nowrap;
+        height: fit-content;
+        flex-shrink: 0;
+      }
+
+      .github-button:hover {
+        background: rgba(79, 140, 255, 0.12);
+        border-color: rgba(79, 140, 255, 0.35);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 16px rgba(79, 140, 255, 0.15);
+        color: var(--primary);
+      }
+
+      .github-button svg {
+        width: 14px;
+        height: 14px;
+        fill: currentColor;
       }
 
       .desc {
@@ -344,6 +387,17 @@
           font-size: 1.9rem;
         }
 
+        .github-button {
+          font-size: 0.75rem;
+          padding: 5px 10px;
+          gap: 5px;
+        }
+
+        .github-button svg {
+          width: 12px;
+          height: 12px;
+        }
+
         .desc {
           font-size: 1.05rem;
         }
@@ -375,7 +429,22 @@
 
         .title {
           font-size: 1.7rem;
+        }
+
+        .title-container {
+          gap: 12px;
           margin-bottom: 8px;
+        }
+
+        .github-button {
+          font-size: 0.7rem;
+          padding: 4px 8px;
+          gap: 4px;
+        }
+
+        .github-button svg {
+          width: 10px;
+          height: 10px;
         }
 
         .desc {
@@ -444,7 +513,21 @@
 
         .title {
           font-size: 1.5rem;
+        }
+
+        .title-container {
           margin-bottom: 6px;
+        }
+
+        .github-button {
+          font-size: 0.65rem;
+          padding: 4px 8px;
+          gap: 3px;
+        }
+
+        .github-button svg {
+          width: 9px;
+          height: 9px;
         }
 
         .desc {
@@ -551,6 +634,9 @@
 
         .title {
           font-size: 1.4rem;
+        }
+
+        .title-container {
           margin-bottom: 4px;
         }
 
@@ -609,6 +695,17 @@
           font-size: 2.3rem;
         }
 
+        .github-button {
+          font-size: 0.85rem;
+          padding: 7px 14px;
+          gap: 7px;
+        }
+
+        .github-button svg {
+          width: 16px;
+          height: 16px;
+        }
+
         .desc {
           font-size: 1.12rem;
         }
@@ -626,7 +723,21 @@
   </head>
   <body>
     <div class="card">
-      <div class="title">WebANNS</div>
+      <div class="title-container">
+        <div class="title">WebANNS</div>
+        <a
+          href="https://github.com/morgen52/webanns"
+          target="_blank"
+          class="github-button"
+        >
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"
+            />
+          </svg>
+          GitHub
+        </a>
+      </div>
       <div class="desc">
         Ultra-fast Approximate Nearest Neighbor Search in Browser.<br />
         <div class="status-message" id="statusMessage">
