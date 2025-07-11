@@ -304,6 +304,36 @@
         border-color: #86efac;
       }
 
+      .status-message {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 8px;
+      }
+
+      .loading-spinner {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #e3e8f0;
+        border-top: 2px solid var(--primary);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        flex-shrink: 0;
+      }
+
+      .loading-spinner.hidden {
+        display: none;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
       @media (max-width: 1024px) {
         .card {
           padding: 36px 32px 28px 32px;
@@ -351,6 +381,15 @@
         .desc {
           font-size: 1rem;
           margin-bottom: 8px;
+        }
+
+        .status-message {
+          gap: 10px;
+        }
+
+        .loading-spinner {
+          width: 18px;
+          height: 18px;
         }
 
         .button-row {
@@ -590,12 +629,16 @@
       <div class="title">WebANNS</div>
       <div class="desc">
         Ultra-fast Approximate Nearest Neighbor Search in Browser.<br />
-        <span style="color: #6c7280; font-size: 0.98em">
-          Default data files are preloaded. You can start using directly, or
-          upload your own
-          <strong>data points</strong> and <strong>HNSW graph</strong> files to
-          replace them.
-        </span>
+        <div class="status-message" id="statusMessage">
+          <div class="loading-spinner" id="loadingSpinner"></div>
+          <span id="statusText" style="color: #6c7280; font-size: 0.98em">
+            <strong
+              >We are automatically loading default data files for the ease of
+              presentation. You can wait until they are preloaded or upload your
+              own data to use.</strong
+            >
+          </span>
+        </div>
       </div>
       <div class="input-group">
         <label for="fileInput"
@@ -694,15 +737,26 @@
           document.getElementById("indexInputLabel").style.color = "#3ecf8e";
         }
 
-        // If both files are loaded successfully, enable Load button
+        // If both files are loaded successfully, enable Load button and update status
         if (uploadFile && indexFile) {
           document.getElementById("loadButton").disabled = false;
           document.getElementById("loadCacheButton").disabled = false;
+
+          // Hide loading spinner and update status text
+          document.getElementById("loadingSpinner").classList.add("hidden");
+          document.getElementById("statusText").innerHTML =
+            '<strong>Default data files are preloaded. You can directly click "Load" or "Load With Cache" button to start using, or upload your own files to replace them.</strong>';
+
           console.log(
             'Default data files are preloaded. You can directly click "Load" or "Load With Cache" button to start using, or upload your own files to replace them.'
           );
         }
       } catch (error) {
+        // Hide loading spinner and update status text for error case
+        document.getElementById("loadingSpinner").classList.add("hidden");
+        document.getElementById("statusText").innerHTML =
+          "<strong>Error occurred while preloading default files, please upload files manually.</strong>";
+
         console.log(
           "Error occurred while preloading default files, please upload files manually:",
           error.message
